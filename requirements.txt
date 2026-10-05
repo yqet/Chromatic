@@ -1,0 +1,6 @@
+PyQt5==5.15.11
+Pillow
+PyOpenGL
+numpy
+py7zr
+PyInstaller==6.22.3

@@ -7,7 +7,7 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QHBoxLayout, QFrame, QOpenGLWidget
 from OpenGL.GL import *
 from OpenGL.GLU import gluPerspective
-from recolor_engine import recolor_pil, find_texture, cached_minecraft_skin, detect_pack_version
+from recolor_engine import Chromatic_pil, find_texture, cached_minecraft_skin, detect_pack_version
 from adapters import get_adapter
 
 ARM_W, ARM_H = 64.0, 32.0
@@ -87,7 +87,7 @@ class ArmorGL(QOpenGLWidget):
         except Exception: self.skin_tex=None
 
     def _recolor(self,path):
-        return recolor_pil(Image.open(path).convert("RGBA"),self.hue,self.saturation,self.value)
+        return Chromatic_pil(Image.open(path).convert("RGBA"),self.hue,self.saturation,self.value)
 
     def _upload(self,im):
         raw=im.transpose(Image.Transpose.FLIP_TOP_BOTTOM).tobytes("raw","RGBA")
@@ -199,7 +199,7 @@ class PreviewDialog(QDialog):
             if p:
                 im=Image.open(p).convert("RGBA")
                 if item_key in getattr(self, "selected", set()):
-                    im=recolor_pil(im,hue,sat,val)
+                    im=Chromatic_pil(im,hue,sat,val)
                 img=QLabel(); img.setAlignment(Qt.AlignCenter); img.setFixedSize(280,240); img.setStyleSheet("border:0;background:transparent;"); img.setPixmap(self._pixmap(im,280,240)); lay.addWidget(img)
             else: lay.addWidget(QLabel("Texture não encontrada no pack"))
         except Exception as exc: lay.addWidget(QLabel("Preview failed: "+str(exc)))

@@ -201,7 +201,7 @@ class PreviewDialog(QDialog):
                 if item_key in getattr(self, "selected", set()):
                     im=Chromatic_pil(im,hue,sat,val)
                 img=QLabel(); img.setAlignment(Qt.AlignCenter); img.setFixedSize(280,240); img.setStyleSheet("border:0;background:transparent;"); img.setPixmap(self._pixmap(im,280,240)); lay.addWidget(img)
-            else: lay.addWidget(QLabel("Texture não encontrada no pack"))
+            else: lay.addWidget(QLabel("Texture n?o encontrada no pack"))
         except Exception as exc: lay.addWidget(QLabel("Preview failed: "+str(exc)))
         return f
 

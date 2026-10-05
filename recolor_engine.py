@@ -15,7 +15,7 @@ _TEXTURE_PATH_CACHE = {}
 
 
 def Chromatic_pil(im: Image.Image, hue_deg: float, target_sat: float = 1.0, target_val: float = 1.0) -> Image.Image:
-    """Troca a cor mantendo o degradÃª relativo, mas respeitando a cor escolhida."""
+    """Troca a cor mantendo o degrad? relativo, mas respeitando a cor escolhida."""
     im = im.convert("RGBA").copy()
     px = im.load()
     new_h = (hue_deg % 360.0) / 360.0
@@ -36,7 +36,7 @@ def Chromatic_pil(im: Image.Image, hue_deg: float, target_sat: float = 1.0, targ
 
 
 def _extract_rar(source: Path, root: Path) -> None:
-    """Extrai RAR usando o tar/bsdtar disponÃ­vel no Windows 10+ e falha claramente."""
+    """Extrai RAR usando o tar/bsdtar dispon?vel no Windows 10+ e falha claramente."""
     try:
         result = subprocess.run(
             ["tar", "-xf", str(source), "-C", str(root)],
@@ -44,13 +44,13 @@ def _extract_rar(source: Path, root: Path) -> None:
             timeout=60, check=False,
         )
     except (FileNotFoundError, subprocess.TimeoutExpired) as exc:
-        raise RuntimeError("Suporte a .rar requer o tar/bsdtar disponÃ­vel no sistema.") from exc
+        raise RuntimeError("Suporte a .rar requer o tar/bsdtar dispon?vel no sistema.") from exc
     if result.returncode != 0:
-        raise RuntimeError(f"NÃ£o foi possÃ­vel abrir o RAR: {result.stderr.strip() or 'arquivo invÃ¡lido'}")
+        raise RuntimeError(f"N?o foi poss?vel abrir o RAR: {result.stderr.strip() or 'arquivo inv?lido'}")
 
 
 def find_texture(source, filename: str):
-    """Localiza uma textura dentro de pasta, ZIP, RAR ou 7Z para uso na prÃ©via."""
+    """Localiza uma textura dentro de pasta, ZIP, RAR ou 7Z para uso na pr?via."""
     source = Path(source)
     if source.is_dir():
         matches = list(source.rglob(filename))
@@ -173,7 +173,7 @@ def Chromatic_zip(src_zip, output_zip, hue_deg, selected=None, target_sat: float
 
 
 def Chromatic_rar(src_rar, output_zip, hue_deg, selected=None, target_sat: float = 1.0, target_val: float = 1.0) -> int:
-    """LÃª packs RAR legacy e gera o resultado em ZIP compatÃ­vel."""
+    """L? packs RAR legacy e gera o resultado em ZIP compat?vel."""
     with tempfile.TemporaryDirectory(prefix="mc_Chromatic_rar_") as tmp:
         root, out_dir = Path(tmp) / "pack", Path(tmp) / "out"
         root.mkdir()

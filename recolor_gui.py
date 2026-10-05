@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import colorsys
 import sys
@@ -6,7 +6,7 @@ import threading
 from pathlib import Path
 
 from PyQt5.QtCore import Qt, QMimeData, QPoint, pyqtSignal
-from PyQt5.QtGui import QColor, QFont, QLinearGradient, QPainter, QPen, QPixmap
+from PyQt5.QtGui import QColor, QFont, QIcon, QLinearGradient, QPainter, QPen, QPixmap
 from PyQt5.QtWidgets import (
     QApplication, QCheckBox, QColorDialog, QFileDialog, QFrame, QGridLayout,
     QGroupBox, QHBoxLayout, QLabel, QLineEdit, QMainWindow, QMessageBox,
@@ -216,7 +216,7 @@ class MainWindow(QMainWindow):
         title = QLabel("Texture Chromatic")
         title.setFont(QFont("Segoe UI", 16, QFont.Bold))
         top.addWidget(title); top.addStretch()
-        self.mode = QPushButton("Appearance: Dark Mode  â€º")
+        self.mode = QPushButton("Appearance: Dark Mode  Ã¢â‚¬Âº")
         self.mode.setFlat(True)
         self.mode.clicked.connect(self._toggle_theme)
         top.addWidget(self.mode)
@@ -287,11 +287,11 @@ class MainWindow(QMainWindow):
         if self._dark_mode:
             bg, panel, field, border, text, muted = BG, PANEL, FIELD, BORDER, TEXT, MUTED
             button, hover, drop, indicator = "#343740", "#41454f", "#2a2c30", "#555962"
-            self.mode.setText("Appearance: Dark Mode  â€º")
+            self.mode.setText("Appearance: Dark Mode  Ã¢â‚¬Âº")
         else:
             bg, panel, field, border, text, muted = "#f5f6f8", "#ffffff", "#ffffff", "#d7dbe2", "#20242a", "#66707d"
             button, hover, drop, indicator = "#e9ebef", "#dde1e7", "#ffffff", "#aeb5bf"
-            self.mode.setText("Appearance: Light Mode  â€º")
+            self.mode.setText("Appearance: Light Mode  Ã¢â‚¬Âº")
         self.setStyleSheet(f"""
             QWidget {{ background:{bg}; color:{text}; font-family:'Segoe UI'; font-size:13px; }}
             QGroupBox {{ background:{panel}; border:1px solid {border}; border-radius:8px; margin-top:9px; padding-top:10px; font-weight:600; }}
@@ -390,11 +390,11 @@ class MainWindow(QMainWindow):
     def _preview(self):
         src = self.input.text().strip()
         if not src or not Path(src).exists():
-            QMessageBox.warning(self, "PrÃ©via", "Selecione primeiro um resource pack .zip/.7z ou uma pasta.")
+            QMessageBox.warning(self, "PrÃƒÂ©via", "Selecione primeiro um resource pack .zip/.7z ou uma pasta.")
             return
         selected = [k for k, cb in self.checks.items() if cb.isChecked()]
         if not selected:
-            QMessageBox.warning(self, "PrÃ©via", "Selecione pelo menos um item.")
+            QMessageBox.warning(self, "PrÃƒÂ©via", "Selecione pelo menos um item.")
             return
         try:
             hue, sat, val, _ = self.target_color.getHsvF()
@@ -402,7 +402,7 @@ class MainWindow(QMainWindow):
             dlg = PreviewDialog(src, float(hue), float(sat), float(val), selected, self)
             dlg.exec_()
         except Exception as exc:
-            QMessageBox.critical(self, "PrÃ©via", f"NÃ£o foi possÃ­vel gerar a prÃ©via.\n\n{exc}")
+            QMessageBox.critical(self, "PrÃƒÂ©via", f"NÃƒÂ£o foi possÃƒÂ­vel gerar a prÃƒÂ©via.\n\n{exc}")
 
     def _run(self):
         src = self.input.text().strip(); dst = self.output.text().strip()
@@ -410,7 +410,7 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, "Entrada", "Selecione um resource pack .zip/.7z ou uma pasta.")
             return
         if not dst:
-            QMessageBox.warning(self, "SaÃ­da", "Escolha o destino da textura Chromaticida.")
+            QMessageBox.warning(self, "SaÃƒÂ­da", "Escolha o destino da textura Chromaticida.")
             return
         selected = [k for k, cb in self.checks.items() if cb.isChecked()]
         if not selected:
@@ -421,8 +421,8 @@ class MainWindow(QMainWindow):
             hue, sat, val, _ = self.target_color.getHsvF()
             hue = 0.0 if hue < 0 else hue * 360.0
             count = Chromatic_path(src, dst, float(hue), selected, float(sat), float(val))
-            self.status.setText(f"ConcluÃ­do â€” {count} textura(s) alterada(s).")
-            QMessageBox.information(self, "ConcluÃ­do", f"Chromatic ConcluÃ­do.\n\n{count} textura(s) alterada(s).\nO degradÃª, sombras e transparÃªncia foram preservados.")
+            self.status.setText(f"ConcluÃƒÂ­do Ã¢â‚¬â€ {count} textura(s) alterada(s).")
+            QMessageBox.information(self, "ConcluÃƒÂ­do", f"Chromatic ConcluÃƒÂ­do.\n\n{count} textura(s) alterada(s).\nO degradÃƒÂª, sombras e transparÃƒÂªncia foram preservados.")
         except Exception as exc:
             self.status.setText("Erro durante o Chromatic.")
             QMessageBox.critical(self, "Erro", str(exc))
@@ -443,5 +443,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 

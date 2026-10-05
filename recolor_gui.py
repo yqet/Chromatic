@@ -433,7 +433,11 @@ class MainWindow(QMainWindow):
 def main():
     app = QApplication(sys.argv)
     app.setStyle("Fusion")
-    win = MainWindow(); win.show()
+    icon_path = Path(sys._MEIPASS) / "chromatic.ico" if getattr(sys, "frozen", False) else Path(__file__).resolve().parent / "chromatic.ico"
+    app.setWindowIcon(QIcon(str(icon_path)))
+    win = MainWindow()
+    win.setWindowIcon(QIcon(str(icon_path)))
+    win.show()
     sys.exit(app.exec_())
 
 

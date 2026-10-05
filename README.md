@@ -60,9 +60,9 @@ python recolor_gui.py
 
 Chromatic can also be packaged as a standalone Windows executable so users can run the application without installing Python or the project dependencies manually.
 
-## Author
+## Authors
 
-Created by **blinkzin**.
+Created by **blinkzin** and **Miguel**.
 
 ## License
 

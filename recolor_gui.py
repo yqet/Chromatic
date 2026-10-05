@@ -13,7 +13,7 @@ from PyQt5.QtWidgets import (
     QPushButton, QScrollArea, QSizePolicy, QVBoxLayout, QWidget
 )
 
-from Chromatic_engine import LABELS, TARGET_NAMES, Chromatic_path, fetch_minecraft_skin, detect_pack_version
+from recolor_engine import LABELS, TARGET_NAMES, Chromatic_path, fetch_minecraft_skin, detect_pack_version
 from preview_dialog import PreviewDialog
 
 
